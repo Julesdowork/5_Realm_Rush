@@ -17,14 +17,15 @@ public class Pathfinder : MonoBehaviour
     };
     bool isRunning = true;
     Waypoint searchCenter;
+    List<Waypoint> path = new List<Waypoint>();
 
-    // Use this for initialization
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         ColorStartAndEnd();
-        Pathfind();
-        //ExploreNeighbors();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
     void LoadBlocks()
@@ -33,14 +34,13 @@ public class Pathfinder : MonoBehaviour
         foreach (Waypoint waypoint in waypoints)
         {
             var gridPos = waypoint.GetGridPos();
-            // overlapping blocks?
+
             if (grid.ContainsKey(gridPos))
             {
                 Debug.LogWarning("Skipping overlapping block " + waypoint);
             }
             else
             {
-                // add to dictionary
                 grid.Add(gridPos, waypoint);
             }
         }
@@ -59,18 +59,14 @@ public class Pathfinder : MonoBehaviour
         foreach (Vector2Int direction in directions)
         {
             Vector2Int neighborCoordinates = searchCenter.GetGridPos() + direction;
-            try
+            if (grid.ContainsKey(neighborCoordinates))
             {
                 QueueNewNeighbors(neighborCoordinates);
-            }
-            catch
-            {
-                // Do nothing
             }
         }
     }
 
-    void Pathfind()
+    void BreadthFirstSearch()
     {
         queue.Enqueue(startWaypoint);
 
@@ -103,5 +99,20 @@ public class Pathfinder : MonoBehaviour
             queue.Enqueue(neighbor);
             neighbor.exploredFrom = searchCenter;
         }
+    }
+
+    void CreatePath()
+    {
+        path.Add(endWaypoint);
+
+        Waypoint previous = endWaypoint.exploredFrom;
+        while (previous != startWaypoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+
+        path.Add(startWaypoint);
+        path.Reverse();
     }
 }
