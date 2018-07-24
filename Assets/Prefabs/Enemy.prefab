@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4267725511812130}
-  - component: {fileID: 114559521787119288}
   - component: {fileID: 54969519170090594}
+  - component: {fileID: 114559521787119288}
   - component: {fileID: 114616435420335700}
   m_Layer: 0
   m_Name: Enemy
@@ -166,3 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMesh: {fileID: 65493983651491880}
+  hitPoints: 10
