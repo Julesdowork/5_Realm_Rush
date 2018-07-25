@@ -9,20 +9,29 @@ public class Waypoint : MonoBehaviour
     public Waypoint exploredFrom;
     public bool isPlaceable = true;
 
+    [SerializeField] Tower tower;
+
     const int gridSize = 10;
+    bool hasTower;
     //Vector2Int gridPos;
 
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))    // left-clicked
         {
-            if (isPlaceable)
+            if (isPlaceable && !hasTower)
             {
+                Instantiate(tower, transform.position, Quaternion.identity);
+                hasTower = true;
                 print("Tower placed on " + gameObject.name);
+            }
+            else if (hasTower)
+            {
+                print("There's already a tower here");
             }
             else
             {
-                print("Can't place tower here");
+                print("Can't place a tower here");
             }
         }
     }

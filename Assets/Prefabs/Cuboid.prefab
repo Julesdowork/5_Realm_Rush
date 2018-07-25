@@ -315,6 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isExplored: 0
   exploredFrom: {fileID: 0}
+  isPlaceable: 1
+  tower: {fileID: 114185030192781200, guid: bb2645720896d8240999675c8ae44bc0, type: 2}
 --- !u!114 &114851878348505802
 MonoBehaviour:
   m_ObjectHideFlags: 1
