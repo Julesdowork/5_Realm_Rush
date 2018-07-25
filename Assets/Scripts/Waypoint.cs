@@ -8,18 +8,13 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     public Waypoint exploredFrom;
 
-    //[SerializeField] Color exploredColor;
-
     const int gridSize = 10;
     //Vector2Int gridPos;
 
-    /*void Update()
+    void OnMouseOver()
     {
-        if (isExplored)
-        {
-            SetTopColor(exploredColor);
-        }
-    }*/
+        print("Mouse over " + gameObject.name);
+    }
 
     public int GetGridSize()
     {
@@ -32,11 +27,5 @@ public class Waypoint : MonoBehaviour
             Mathf.RoundToInt(transform.position.x / gridSize),
             Mathf.RoundToInt(transform.position.z / gridSize)
         );
-    }
-
-    public void SetTopColor(Color color)
-    {
-        MeshRenderer topMeshRenderer = transform.Find("Up Face").GetComponent<MeshRenderer>();
-        topMeshRenderer.material.color = color;
     }
 }
