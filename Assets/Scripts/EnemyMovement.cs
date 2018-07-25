@@ -7,8 +7,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float movementPeriod = 2f;
     [SerializeField] ParticleSystem goalParticles;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
         var path = pathfinder.GetPath();

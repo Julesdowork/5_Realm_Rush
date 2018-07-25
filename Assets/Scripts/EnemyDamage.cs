@@ -8,6 +8,15 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem deathParticlePrefab;
+    [SerializeField] AudioClip enemyHitSFX;
+    [SerializeField] AudioClip enemyDeathSFX;
+
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnParticleCollision(GameObject other)
     {
@@ -22,6 +31,7 @@ public class EnemyDamage : MonoBehaviour
     {
         hitPoints = hitPoints - 1;
         hitParticle.Play();
+        audioSource.PlayOneShot(enemyHitSFX);
     }
 
     void KillEnemy()

@@ -9,8 +9,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float secondsBetweenSpawns = 4f;
     [SerializeField] EnemyMovement enemy;
     [SerializeField] Text scoreText;
+    [SerializeField] AudioClip spawnSFX;
 
     int enemyCount;
+    AudioSource audioSource;
 
 	// Use this for initialization
 	void Start()
@@ -24,9 +26,15 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             Instantiate(enemy, transform.position, Quaternion.identity, gameObject.transform);
-            enemyCount++;
-            scoreText.text = enemyCount.ToString();
+            GetComponent<AudioSource>().PlayOneShot(spawnSFX);
+            AddScore();
             yield return new WaitForSeconds(secondsBetweenSpawns);
         }
+    }
+
+    void AddScore()
+    {
+        enemyCount++;
+        scoreText.text = enemyCount.ToString();
     }
 }
