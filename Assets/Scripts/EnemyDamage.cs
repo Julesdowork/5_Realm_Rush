@@ -28,6 +28,8 @@ public class EnemyDamage : MonoBehaviour
     {
         var deathFX = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         deathFX.Play();
+        
+        Destroy(deathFX.gameObject, deathFX.main.duration);
         Destroy(gameObject);
     }
 }
