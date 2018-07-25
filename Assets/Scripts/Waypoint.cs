@@ -7,13 +7,24 @@ public class Waypoint : MonoBehaviour
     // ok as this is a data class
     public bool isExplored = false;
     public Waypoint exploredFrom;
+    public bool isPlaceable = true;
 
     const int gridSize = 10;
     //Vector2Int gridPos;
 
     void OnMouseOver()
     {
-        print("Mouse over " + gameObject.name);
+        if (Input.GetMouseButtonDown(0))    // left-clicked
+        {
+            if (isPlaceable)
+            {
+                print("Tower placed on " + gameObject.name);
+            }
+            else
+            {
+                print("Can't place tower here");
+            }
+        }
     }
 
     public int GetGridSize()
