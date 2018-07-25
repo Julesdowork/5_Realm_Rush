@@ -38,6 +38,8 @@ public class EnemyDamage : MonoBehaviour
     {
         var deathFX = Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
         deathFX.Play();
+        AudioSource.PlayClipAtPoint(enemyDeathSFX, Camera.main.transform.position);
+        //Debug.Break();
         
         Destroy(deathFX.gameObject, deathFX.main.duration);
         Destroy(gameObject);
