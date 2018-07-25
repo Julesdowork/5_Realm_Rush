@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public Waypoint currentWaypoint;
+
     // Parameters of each tower - don't change
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 10f;

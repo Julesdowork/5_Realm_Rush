@@ -8,10 +8,9 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     public Waypoint exploredFrom;
     public bool isPlaceable = true;
+    public bool hasTower;
 
     const int gridSize = 10;
-    bool hasTower;
-    //Vector2Int gridPos;
 
     void OnMouseOver()
     {
@@ -20,7 +19,6 @@ public class Waypoint : MonoBehaviour
             if (isPlaceable && !hasTower)
             {
                 FindObjectOfType<TowerFactory>().AddTower(this);
-                hasTower = true;
             }
             else if (hasTower)
             {
