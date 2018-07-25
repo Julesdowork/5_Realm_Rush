@@ -9,8 +9,6 @@ public class Waypoint : MonoBehaviour
     public Waypoint exploredFrom;
     public bool isPlaceable = true;
 
-    [SerializeField] Tower tower;
-
     const int gridSize = 10;
     bool hasTower;
     //Vector2Int gridPos;
@@ -21,9 +19,8 @@ public class Waypoint : MonoBehaviour
         {
             if (isPlaceable && !hasTower)
             {
-                Instantiate(tower, transform.position, Quaternion.identity);
+                FindObjectOfType<TowerFactory>().AddTower(this);
                 hasTower = true;
-                print("Tower placed on " + gameObject.name);
             }
             else if (hasTower)
             {
